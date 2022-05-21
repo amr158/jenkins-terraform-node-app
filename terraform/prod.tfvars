@@ -1,0 +1,8 @@
+name="prod"
+vpc_cidr = "190.0.0.0/16"
+public_subnet_1_cidr = "190.0.0.0/24"
+public_subnet_2_cidr = "190.0.1.0/24"
+private_Subnet_1_cidr = "190.0.2.0/24"
+private_subnet_2_cidr = "190.0.3.0/24"
+region = "eu-central-1"
+ami = "ami-0d527b8c289b4af7f"
