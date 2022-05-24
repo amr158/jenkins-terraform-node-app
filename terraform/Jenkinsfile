@@ -1,0 +1,15 @@
+pipeline {
+    agent any
+    stages {
+        stage('intitialize infrastructure') {
+            steps{
+                sh 'terraform init'
+            }
+        }
+        stage('build infrastructure') {
+            steps{
+                sh 'terraform apply'
+            }
+        }
+    }
+}
