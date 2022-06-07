@@ -1,14 +1,17 @@
 pipeline {
     agent any
-    withAWS(credentials: 'aws', region: 'us-west-1') {
-            stages {
-            stage('intitialize infrastructure') {
-                steps{
+    stages {
+        stage('intitialize infrastructure') {
+            steps {
+                withAWS(credentials: 'aws', region: 'us-west-1') {
                     sh 'terraform init'
                 }
             }
-            stage('build infrastructure') {
-                steps{
+        }
+
+        stage('build infrastructure') {
+            steps {
+                withAWS(credentials: 'aws', region: 'us-west-1') {
                     sh 'terraform apply --var-file dev.tfvars'
                 }
             }
