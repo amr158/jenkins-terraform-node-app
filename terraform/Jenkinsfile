@@ -4,7 +4,8 @@ pipeline {
         stage('intitialize infrastructure') {
             steps {
                 withAWS(credentials: 'aws', region: 'us-west-1') {
-                    sh 'terraform init'
+                    sh 'cd terraform'
+                    sh 'terraform init -reconfigure'
                 }
             }
         }
