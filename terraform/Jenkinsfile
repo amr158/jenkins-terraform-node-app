@@ -4,7 +4,8 @@ pipeline {
         stage('build infrastructure') {
             steps {
                 withAWS(credentials: 'aws', region: 'us-west-1') {
-                    dir("terraform") { // this was added
+                    dir("terraform") { 
+                        sh 'ls'
                         sh 'terraform init -reconfigure'
                         sh 'terraform apply --var-file dev.tfvars'
                     }
