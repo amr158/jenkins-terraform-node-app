@@ -1,14 +1,16 @@
 pipeline {
     agent any
-    stages {
-        stage('intitialize infrastructure') {
-            steps{
-                sh 'terraform init'
+    withAWS(credentials: 'aws', region: 'us-east-1') {
+            stages {
+            stage('intitialize infrastructure') {
+                steps{
+                    sh 'terraform init'
+                }
             }
-        }
-        stage('build infrastructure') {
-            steps{
-                sh 'terraform apply'
+            stage('build infrastructure') {
+                steps{
+                    sh 'terraform apply'
+                }
             }
         }
     }
