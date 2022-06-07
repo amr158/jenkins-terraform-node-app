@@ -1,21 +1,13 @@
 pipeline {
     agent any
     stages {
-        stage('intitialize infrastructure') {
-            steps {
-                withAWS(credentials: 'aws', region: 'us-west-1') {
-                    sh 'pwd'
-                    sh 'ls'
-                    sh 'cd terraform'
-                    sh 'terraform init -reconfigure'
-                }
-            }
-        }
-
         stage('build infrastructure') {
             steps {
                 withAWS(credentials: 'aws', region: 'us-west-1') {
-                    sh 'terraform apply --var-file dev.tfvars'
+                    dir("terraform") { // this was added
+                        sh 'terraform init -reconfigure'
+                        sh 'terraform apply --var-file dev.tfvars'
+                    }
                 }
             }
         }
