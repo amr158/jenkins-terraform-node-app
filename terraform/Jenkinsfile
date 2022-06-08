@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('build infrastructure') {
             steps {
-                withAWS(credentials: 'aws', region: 'eu-west-1') {
+                withAWS(credentials: 'aws', region: 'us-west-2') {
                     dir("terraform") { 
                         sh 'terraform init -reconfigure'
                         sh 'terraform destroy --var-file dev.tfvars -auto-approve'
