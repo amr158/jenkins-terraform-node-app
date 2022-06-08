@@ -3,7 +3,7 @@ resource "tls_private_key" "instance" {
 }
 
 resource "aws_key_pair" "instance" {
-  key_name   = "${var.name}-amr2-keypair"
+  key_name   = "${var.name}-amr3-keypair"
   public_key = tls_private_key.instance.public_key_openssh
   tags = {
     Name = "${var.name}-test-keypair"

@@ -6,7 +6,7 @@ pipeline {
                 withAWS(credentials: 'amr_gehad', region: 'us-west-2') {
                     dir("terraform") { 
                         sh 'terraform init -reconfigure'
-                        sh 'terraform destroy --var-file dev.tfvars -auto-approve'
+                        sh 'terraform apply --var-file dev.tfvars -auto-approve'
                     }
                 }
             }
