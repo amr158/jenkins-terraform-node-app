@@ -15,7 +15,7 @@ resource "aws_db_parameter_group" "db_parameter_group_a" {
 
 resource "aws_db_subnet_group" "db_subnet_group_a" {
   name       = "db_subnet_group_a"
-  subnet_ids = [ module.network.pri_sub1_id , module.network.pri_sub2_id ]
+  subnet_ids = [ module.network.pri_sub1_id ]
 
   tags = {
     Name = "My DB subnet group"
