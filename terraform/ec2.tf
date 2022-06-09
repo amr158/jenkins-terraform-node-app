@@ -48,7 +48,7 @@ resource "aws_instance" "application1" {
   disable_api_termination = false
   ebs_optimized = false
   root_block_device {
-    volume_size = "10"
+    volume_size = "40"
   }
   tags = {
     "Name" = "${var.name}-application1"
