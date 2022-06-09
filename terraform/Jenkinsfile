@@ -7,8 +7,11 @@ pipeline {
                     dir("terraform") { 
                         sh 'terraform init -reconfigure'
                         sh 'terraform apply --var-file dev.tfvars -auto-approve'
+                    }
+                    dir(""){
                         sh 'ls'
-                        sh 'ls ..'
+                        sh 'chmod 777 jumphost.sh'
+                        sh './jumphost.sh'
                     }
                 }
             }
