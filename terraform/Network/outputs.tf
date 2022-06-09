@@ -4,6 +4,9 @@ output pub_sub1_id {
 output pri_sub1_id {
     value = aws_subnet.private_subnet_1.id
 }
+output pri_sub2_id {
+    value = aws_subnet.private_subnet_2.id
+}
 output vpc_id {
     value = aws_vpc.Main.id
 }
