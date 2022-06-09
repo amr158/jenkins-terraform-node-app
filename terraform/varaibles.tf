@@ -23,3 +23,13 @@ variable "region" {
 variable "ami" {
   type = string
 }
+
+variable db_Pass{
+type  = string
+
+}
+
+variable db_User {
+  type  = string
+
+}
