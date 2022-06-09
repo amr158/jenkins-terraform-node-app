@@ -6,13 +6,12 @@ pipeline {
                 withAWS(credentials: 'amr_gehad', region: 'eu-west-1') {
                     dir("terraform") { 
                         sh 'terraform init -reconfigure'
-                        sh 'terraform destroy --var-file dev.tfvars -auto-approve'
+                        sh 'terraform apply --var-file dev.tfvars -auto-approve'
                     }
-                    // dir(""){
-                    //     sh 'ls'
-                    //     sh 'chmod 777 jumphost.sh'
-                    //     sh './jumphost.sh'
-                    // }
+                    dir(""){
+                        sh 'chmod 777 jumphost.sh'
+                        sh './jumphost.sh'
+                    }
                 }
             }
         }
