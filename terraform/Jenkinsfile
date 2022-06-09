@@ -6,7 +6,7 @@ pipeline {
                 withAWS(credentials: 'amr_gehad', region: 'eu-west-1') {
                     dir("terraform") { 
                         sh 'terraform init -reconfigure'
-                        sh 'terraform apply --var-file dev.tfvars -auto-approve'
+                        sh 'echo "yes" | terraform apply --var-file dev.tfvars -auto-approve'
                     }
                 }
             }
