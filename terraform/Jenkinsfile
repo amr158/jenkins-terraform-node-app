@@ -9,6 +9,7 @@ pipeline {
                         // sh 'terraform apply --var-file dev.tfvars -auto-approve'
                         sh 'bastion_ip=$(terraform output --raw bastion1-ip)'
                         sh 'private_ip=$(terraform output --raw private-ip)'
+                        sh 'bastion_ip="hello world"'
                         sh 'echo bastion_ip=${bastion_ip}'
                     }
                     dir(""){
