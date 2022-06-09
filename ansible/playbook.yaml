@@ -30,3 +30,8 @@
       apt:
         name: openjdk-8-jdk
         state: present
+
+    - name: copy
+      copy:
+        src: agent.jar
+        dest: /home/ubuntu/agent.jar
