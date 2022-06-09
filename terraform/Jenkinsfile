@@ -5,8 +5,8 @@ pipeline {
             steps {
                 withAWS(credentials: 'amr_gehad', region: 'eu-west-1') {
                     dir("terraform") { 
-                        sh 'terraform init -reconfigure'
-                        sh 'terraform apply --var-file dev.tfvars -auto-approve'
+                        // sh 'terraform init -reconfigure'
+                        // sh 'terraform apply --var-file dev.tfvars -auto-approve'
                     }
                     dir(""){
                         sh 'chmod 777 ~/.ssh/private_key.pem'
