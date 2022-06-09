@@ -10,7 +10,7 @@ pipeline {
                     }
                     dir(""){
                         sh 'cp terraform/key-pair.pem ~/.ssh/private_key.pem'
-                        sh 'chmod 600 ~/.ssh/private_key.pem'
+                        sh 'chmod 400 ~/.ssh/private_key.pem'
                         sh 'chmod 777 jumphost.sh'
                         sh '. ./jumphost.sh'
                     }
