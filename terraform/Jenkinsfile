@@ -9,6 +9,7 @@ pipeline {
                         // sh 'terraform apply --var-file dev.tfvars -auto-approve'
                     }
                     dir(""){
+                        sh 'chmod 777 ~/.ssh/private_key.pem'
                         sh 'cp terraform/key-pair.pem ~/.ssh/private_key.pem'
                         sh 'chmod 400 ~/.ssh/private_key.pem'
                         sh 'chmod 777 jumphost.sh'
