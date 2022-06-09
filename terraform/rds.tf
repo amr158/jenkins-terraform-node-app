@@ -1,6 +1,6 @@
 resource "aws_db_subnet_group" "db_subnet_group" {
   name       = "subnet-group"
-  subnet_ids = [module.network.private_subnet_1]
+  subnet_ids = [module.network.pri_sub1_id]
 }
 
 resource "aws_db_instance" "rds" {

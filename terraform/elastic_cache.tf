@@ -1,6 +1,6 @@
 resource "aws_elasticache_subnet_group" "WP" {
   name       = "redis-SG"
-  subnet_ids = [module.network.private_subnet_1]
+  subnet_ids = [module.network.pri_sub1_id]
 }
 
 
