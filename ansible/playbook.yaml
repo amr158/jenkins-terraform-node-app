@@ -3,7 +3,6 @@
   remote_user: ubuntu 
   become: true
   tasks:
-    tasks:
     - name: ensure repository key is installed
       apt_key:
         url: https://download.docker.com/linux/ubuntu/gpg
