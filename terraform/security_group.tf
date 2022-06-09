@@ -57,14 +57,14 @@ resource "aws_security_group_rule" "port_3000_rule" {
 resource "aws_security_group" "DB-sgr" {
   name        = "DB-SG"
   description = "DB"
-  vpc_id      = module.network.vpc-id
+  vpc_id      = module.network.vpc_id
 
   ingress {
     description      = "Allow all"
     from_port        = 0
     to_port          = 0
     protocol         = "-1"
-    cidr_blocks      = [module.network.vpc-cidr-block]
+    cidr_blocks      = [module.network.vpc_cidr]
     ipv6_cidr_blocks = ["::/0"]
   }
 

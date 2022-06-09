@@ -6,10 +6,17 @@ resource "aws_instance" "bastion1" {
   subnet_id = module.network.pub_sub1_id
   security_groups = [aws_security_group.security_group_1.id]
   key_name = aws_key_pair.instance.key_name
+  disable_api_termination = false
+  ebs_optimized = false
+  root_block_device {
+    volume_size = "10"
+  }
   tags = {
     "Name" = "${var.name}-bastion1"
   }
-  
+  provisioner "local-exec" {
+    command = "echo ${self.public_ip}"
+  }
 }
 
 
@@ -22,6 +29,11 @@ resource "aws_instance" "application1" {
   subnet_id = module.network.pri_sub1_id
   security_groups = [aws_security_group.security_group_2.id]
   key_name = aws_key_pair.instance.key_name
+  disable_api_termination = false
+  ebs_optimized = false
+  root_block_device {
+    volume_size = "10"
+  }
   tags = {
     "Name" = "${var.name}-application1"
   }
