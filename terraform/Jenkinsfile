@@ -19,5 +19,12 @@ pipeline {
                 }
             }
         }
+        stage('configure application instance') {
+            steps {
+                dir("ansible") { 
+                    sh 'ansible-playbook -i inventory playbook.yaml'
+                }
+            }
+        }
     }
 }
