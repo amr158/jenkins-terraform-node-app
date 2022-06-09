@@ -7,12 +7,8 @@ pipeline {
                     dir("terraform") { 
                         // sh 'terraform init -reconfigure'
                         // sh 'terraform apply --var-file dev.tfvars -auto-approve'
-                        sh 'bastion_ip=$(terraform output --raw bastion1-ip)'
-                        sh 'private_ip=$(terraform output --raw private-ip)'
-                        sh 'echo ${bastion_ip}'
                     }
                     dir(""){
-                        sh 'echo ${bastion_ip}'
                         sh 'cp terraform/key-pair.pem ~/.ssh/private_key.pem'
                         sh 'chmod 600 ~/.ssh/private_key.pem'
                         sh 'chmod 777 jumphost.sh'
