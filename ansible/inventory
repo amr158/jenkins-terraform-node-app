@@ -1,1 +1,1 @@
-application  ansible_user=ubuntu ansible_ssh_private_key_file=~/.ssh/private_key.pem
+application ansible_ssh_private_key_file=~/.ssh/private_key.pem
