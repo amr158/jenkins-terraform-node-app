@@ -4,7 +4,7 @@ private_ip=$(terraform output --raw private-ip)
 cat << EOF > ~/.ssh/config
 Host application
     HostName ${private_ip}
-    ProxyCommand ssh -W %h:%p ${bastion_ip}
+    ProxyCommand ssh -W %h:%p bastion
     user  ubuntu
     StrictHostKeyChecking no
     UserKnownHostsFile /dev/null
