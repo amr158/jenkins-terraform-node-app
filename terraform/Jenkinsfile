@@ -5,8 +5,8 @@ pipeline {
             steps {
                 withAWS(credentials: 'amr_gehad', region: 'eu-west-1') {
                     dir("terraform") { 
-                        sh 'terraform init -reconfigure'
-                        sh 'terraform apply --var-file dev.tfvars -auto-approve'
+                        // sh 'terraform init -reconfigure'
+                        // sh 'terraform apply --var-file dev.tfvars -auto-approve'
                         sh 'bastion_ip=$(terraform output --raw bastion1-ip)'
                         sh 'private_ip=$(terraform output --raw private-ip)'
                         sh 'echo bastion_ip=$bastion_ip'
