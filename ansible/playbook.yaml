@@ -14,13 +14,13 @@
     - name: ensure docker and dependencies are installed
       apt: name=docker-ce update_cache=yes
 
-    - name: set docker storage to overlay2 
-      copy:
-        dest: "/your path"
-        content: |
-          {
-            "storage-driver": "overlay2"
-          }
+    # - name: set docker storage to overlay2 
+    #   copy:
+    #     dest: "/your path"
+    #     content: |
+    #       {
+    #         "storage-driver": "overlay2"
+    #       }
 
     - service: name=docker state=restarted
     
