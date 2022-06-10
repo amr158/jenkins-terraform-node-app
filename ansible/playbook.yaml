@@ -3,48 +3,90 @@
   remote_user: ubuntu 
   become: true
   tasks:
-    - name: ensure repository key is installed
-      apt_key:
-        url: https://download.docker.com/linux/ubuntu/gpg
+    - name: add sudo group
+      group: 
+        name: sudo
+        state: present
+    
+    - name: Allow 'sudo' group to have passwordless sudo
+      lineinfile:
+        dest: /etc/sudoers
+        state: present
+        regexp: '^%sudo'
+        line: '%sudo ALL=(ALL) NOPASSWD: ALL'
+        validate: 'visudo -cf %s'
+
+    - name: Add sudoers users to sudo group
+      user:
+        name: ubuntu
+        groups: sudo
+        append: yes
         state: present
 
-    - name: ensure docker registry is available
-      apt_repository: repo='deb https://download.docker.com/linux/ubuntu bionic stable' state=present
+    - name: update apt
+      apt:
+        update_cache: yes
 
-    - name: ensure docker and dependencies are installed
-      apt: name=docker-ce update_cache=yes
-
-    
     - name: create dir
       file:
         name: jenkins_home
         state: directory
         mode: 0777
 
-    # - name: set docker storage to overlay2 
-    #   copy:
-    #     dest: "/your path"
-    #     content: |
-    #       {
-    #         "storage-driver": "overlay2"
-    #       }
-
-    - service: name=docker state=restarted
-    
-    - name: Change file permissions
-      file:
-        path: /var/run/docker.sock
-        mode: '0777'
-    
-    - name: Add the user to docker group
-      user:
-        name: ubuntu
-        group: docker
-
     - name: install openjdk
       apt:
         name: openjdk-8-jdk
         state: present
+
+    - name: Install aptitude
+      apt:
+        name: aptitude
+        state: latest
+        update_cache: true
+
+    - name: Install required system packages
+      apt:
+        pkg:
+          - apt-transport-https
+          - ca-certificates
+          - curl
+          - software-properties-common
+          - python3-pip
+          - virtualenv
+          - python3-setuptools
+        state: latest
+        update_cache: true
+
+    - name: Add Docker GPG apt Key
+      apt_key:
+        url: https://download.docker.com/linux/ubuntu/gpg
+        state: present
+
+    - name: Add Docker Repository
+      apt_repository:
+        repo: deb https://download.docker.com/linux/ubuntu focal stable
+        state: present
+
+    - name: Update apt and install docker-ce
+      apt:
+        name: docker-ce
+        state: latest
+        update_cache: true
+
+    - name: Install Docker Module for Python
+      pip:
+        name: docker
+
+    - name: Change file permissions
+      ansible.builtin.file:
+        path: /var/run/docker.sock
+        mode: '0777'
+
+    - name: Add the user to docker group
+      ansible.builtin.user:
+        name: ubuntu
+        group: docker
+
 
     - name: copy
       copy:
